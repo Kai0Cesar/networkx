@@ -3,7 +3,7 @@ from itertools import count
 
 import networkx as nx
 
-__all__ = ['greedy_path',]
+__all__ = ['greedy_path']
 
 def greedy_path(G, source, target, heuristic=None, weight='weight'):
     
@@ -40,22 +40,17 @@ def greedy_path(G, source, target, heuristic=None, weight='weight'):
         
         if curnode in explored:
             #Do not override the parent of starting node
-            if explored[curnode] is Node:
+            if explored[curnode] is None:
                 continue
 
         explored[curnode] = parent
 
-        for neighbor in G[curnode].items()
+        for neighbor in G[curnode].items():
             if neighbor in enqueued:
                 continue
             else:
                 h = heuristic(neighbor, target)
             enqueued[neighbor] = h
-            push(queue, (h, next(c), neighbor, curnode)
-    
-    raise nx.NetworkXNoPath(f"Node {target} not reachable from {source}")
-            
+            push(queue, (h, next(c), neighbor, curnode))
 
-        
-    
-    
+    raise nx.NetworkXNoPath(f"Node {target} not reachable from {source}")
